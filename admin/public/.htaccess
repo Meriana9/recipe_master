@@ -1,0 +1,80 @@
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+# RewriteBase "/.../"
+
+#--------------------------------------------------
+# ROUTES
+#--------------------------------------------------
+# ROUTE DE LOGOUT
+# PATTERN: /users/logout
+# TARGET: ?users=logout
+RewriteRule ^users\/logout$ index.php?users=logout [L]
+
+# ROUTE DES CATEGORIES -------------
+
+# CATEGORIES.INDEX
+# PATTERN: /categories
+# TARGET: ?categories=index
+RewriteRule ^categories$ index.php?categories=index [L]
+
+# CATEGORIES.ADD  c'est le form
+# PATTERN: /categories/add/form
+# TARGET: ?categories=addForm
+RewriteRule ^categories\/add\/form$ index.php?categories=addForm [L]
+
+# CATEGORIES.INSERT
+# PATTERN: /categories/add/insert
+# TARGET: ?categories=add
+RewriteRule ^categories\/add\/insert$ index.php?categories=add [L]
+
+# CATEGORIES.DELETE
+# PATTERN: /categories/delete/x
+# TARGET: ?categories=delete&id=x
+RewriteRule ^categories\/delete\/([1-9][0-9]*)$ index.php?categories=delete&id=$1 [L]
+
+# CATEGORIES.EDIT FORM
+# PATTERN: /categories/edit/form/x
+# TARGET: ?categories=editForm&id=x
+RewriteRule ^categories\/edit\/form\/([1-9][0-9]*)$ index.php?categories=editForm&id=$1 [L]
+
+# CATEGORIES.EDIT UPDATE
+# PATTERN: /categories/edit/x
+# TARGET: ?categories=edit&id=x
+RewriteRule ^categories\/edit\/([1-9][0-9]*)$ index.php?categories=edit&id=$1 [L]
+
+
+# DISHES.INDEX
+# PATTERN: /dishes
+# TARGET: ?dishes
+RewriteRule ^dishes$ index.php?dishes [L]
+
+# DISHES.ADD  c'est le form
+# PATTERN: /dishes/add/form
+# TARGET: ?dishes=addForm
+RewriteRule ^dishes\/add\/form$ index.php?dishes=addForm [L]
+
+# DISHES.INSERT
+# PATTERN: /dishes/add/insert
+# TARGET: ?dishes=addInsert
+RewriteRule ^dishes\/add\/insert$ index.php?dishes=addInsert [L]
+
+# DISHES.DELETE
+# PATTERN: /dishes/x/delete
+# TARGET: ?dishes=delete&id=x
+RewriteRule ^dishes\/([1-9][0-9]*)\/delete$ index.php?dishes=delete&id=$1 [L]
+
+# DISHES.EDIT FORM
+# PATTERN: /dishes/edit/form/x
+# TARGET: ?dishes=editForm&id=x
+RewriteRule ^dishes\/([1-9][0-9]*)\/edit\/form$ index.php?dishes=editForm&id=$1 [L]
+
+# DISHES.EDIT UPDATE
+# PATTERN: /dishes/xxx/edit/update
+# TARGET: ?dishes=edit&id=x
+RewriteRule ^dishes\/([1-9][0-9]*)\/edit\/update$ index.php?dishes=editUpdate&id=$1 [L]
+
+
+
+# --------------------------------------------------
+RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]
+RewriteRule ^(.*)$ index.php [L]

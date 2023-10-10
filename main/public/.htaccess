@@ -1,0 +1,57 @@
+RewriteEngine on
+
+# ----------------------
+# ROUTES
+# ----------------------
+
+# ROUTE FORMULAIRE DE CONNEXION
+# PATTERN: /users/login/form
+# TARGET: ?users=loginForm
+RewriteRule ^users\/login\/form$ index.php?users=loginForm [L]
+
+# ROUTE DE CONNEXION
+# PATTERN: /users/login
+# TARGET: ?users=login
+RewriteRule ^users\/login$ index.php?users=login [L]
+
+# ROUTE LISTE DES CATERGOIES
+# PATTERN: /categories
+# TARGET: ?categories=index
+RewriteRule ^categories\/([1-9][0-9]*)\/([a-z0-9][a-z0-9\-]*)*[a-z0-9]$ index.php?categorieId=$1 [L]
+
+# ROUTE LISTE DES dishes
+# PATTERN: /dishes
+# TARGET: ?dishes=index
+RewriteRule ^dishes$ index.php?dishes=index [L]
+
+# ROUTE DÉTAILS D'UN dishe
+# PATTERN: /dishes/{id}/{slug}
+# TARGET: ?dishes=show&id=x
+RewriteRule ^dishes\/([1-9][0-9]*)\/([a-z0-9][a-z0-9\-]*)*[a-z0-9]$ index.php?dishes=show&id=$1 [L]
+
+# ROUTE LISTE DES CHEFS
+# PATTERN: /chefs
+# TARGET: ?chefs=index
+RewriteRule ^chefs$ index.php?chefs=index [L]
+
+# ROUTE DÉTAILS D'UN chef
+# PATTERN: /chefs/{id}/{name}
+# TARGET: ?chefs=show&id=x
+RewriteRule ^chefs/([1-9][0-9]*)/[a-z]+\-*[a-z]*$ index.php?chefs=show&id=$1 [L]
+
+# -------------------------------------------------
+# API ENDPOINTS
+# -------------------------------------------------
+# LISTE DES DISHES
+# PATTERN: /api/dishes
+# TARGET: ?api&dishes=index
+RewriteRule ^api/dishes$ index.php?api=truc&dishes=index [L]
+
+# * 0, 1 ou plusieurs
+# + 1 ou plusieurs, au moins 1
+
+
+RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]
+# Route par défaut
+# RewriteRule ^(.*)$ index.php [L]
+
